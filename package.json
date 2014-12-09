@@ -1,0 +1,11 @@
+{
+  "name": "svgee",
+  "version": "1.0.0",
+  "description": "",
+  "main": "svgee.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "ISC"
+}
