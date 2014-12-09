@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <script src="./svgee.js"></script>
+  </head>
+  <body>
+    <div id="canvas"></div>
+
+    <script>
+      var canvas = document.getElementById('canvas');
+      var svg = SVGEE.createSvg(500, 500);
+      var circle = SVGEE.circle(100, 100, 40);
+
+      canvas.appendChild(svg);
+      SVGEE.fill(circle, '#ddd');
+      SVGEE.stroke(circle, 2, '#000');
+      svg.appendChild(circle);
+      SVGEE.closeSvg(svg);
+    </script>
+  </body>
+</html>
