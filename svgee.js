@@ -52,6 +52,27 @@
   };
 
   /**
+   * Creates an SVG ellipse element.
+   *
+   * @param {number} cx The x-coordinate of the center of the ellipse.
+   * @param {number} cy The y-coordinate of the center of the ellipse.
+   * @param {number} rx The horizontal radius of the ellipse.
+   * @param {number} ry The vertical radius of the ellipse.
+   *
+   * @returns The SVG ellipse element to be append to the SVG canvas.
+   */
+  function ellipse(cx, cy, rx, ry) {
+    var ellipse = document.createElementNS(w3SvgUrl, 'ellipse');
+
+    ellipse.setAttributeNS(null, 'cx', cx);
+    ellipse.setAttributeNS(null, 'cy', cy);
+    ellipse.setAttributeNS(null, 'rx', rx);
+    ellipse.setAttributeNS(null, 'ry', ry);
+
+    return ellipse;
+  }
+
+  /**
    * Creates an SVG rectangle element.
    *
    * @param {number} x The x-coordinate of the top left corner of the rectangle.
@@ -70,6 +91,21 @@
     rect.setAttributeNS(null, 'height', height);
 
     return rect;
+  }
+
+  /**
+   * Creates an SVG square element.
+   *
+   * @param {number} x The x-coordinate of the top left corner of the square.
+   * @param {number} y The y-coordiante of the top left corner of the square.
+   * @param {number} sideLength The length of the sides of the square.
+   *
+   * @returns The SVG rectangle element to be appended to the SVG canvas.
+   */
+  function square(x, y, sideLength) {
+    // delegate to rect function
+    console.log(x, y, sideLength);
+    return rect(x, y, sideLength, sideLength);
   }
 
   /**
@@ -130,9 +166,11 @@
     circle: circle,
     closeSvg: closeSvg,
     createSvg: createSvg,
+    ellipse: ellipse,
     fill: fill,
     rect: rect,
-    stroke: stroke
+    stroke: stroke,
+    square: square
   };
 
   // actually expose the API

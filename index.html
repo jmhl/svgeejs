@@ -10,6 +10,8 @@
       var svg = SVGEE.createSvg(500, 500);
       var circle = SVGEE.circle(100, 100, 40);
       var rect = SVGEE.rect(300, 300, 180, 80);
+      var ellipse = SVGEE.ellipse(400, 50, 40, 40);
+      var square = SVGEE.square(0, 0, 10);
 
       canvas.appendChild(svg);
 
@@ -20,6 +22,13 @@
       SVGEE.fill(rect, '#54B52E');
       SVGEE.stroke(rect, 4, '#3B4D7D');
       svg.appendChild(rect);
+
+      SVGEE.fill(ellipse, '#fff');
+      SVGEE.stroke(ellipse, 1, '#54B52E');
+      svg.appendChild(ellipse);
+
+      SVGEE.fill(square, '#000');
+      svg.appendChild(square);
 
       SVGEE.closeSvg(svg);
     </script>
