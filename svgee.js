@@ -133,27 +133,53 @@
    *
    * @param {array} coordinatePairs An array of coordinate pairs. Each coordinate point but have a pair (e.g. [x1, y1, x2, y2]).
    *
-   * @returns The SVG line element to be added to the SVG canvas. Returns false a coordinate does not have a pair coordinate.
+   * @returns The SVG polyline element to be added to the SVG canvas. Returns false a coordinate does not have a pair coordinate.
    */
   // TODO: throw an error when each coordinate does not have a pair
   function polyline(coordinatePairs) {
     if (coordinatePairs.length % 2 !== 0) { return false; }
 
     var polyline = document.createElementNS(w3SvgUrl, 'polyline');
+    var coordinatePairsString = _createCoordinatePairString(coordinatePairs);
 
+    polyline.setAttributeNS(null, 'points', coordinatePairsString);
+
+    return polyline;
+  }
+
+  /**
+   * Creates an SVG polygon element.
+   *
+   * @param {array} coordinatePairs An array of coordinate pairs. Each coordinate point but have a pair (e.g. [x1, y1, x2, y2]).
+   *
+   * @returns The SVG polygon element to be added to the SVG canvas. Returns false a coordinate does not have a pair coordinate.
+   */
+  // TODO: throw an error when each coordinate does not have a pair
+  function polygon(coordinatePairs) {
+    if (coordinatePairs.length % 2 !== 0) { return false; }
+
+    var polygon = document.createElementNS(w3SvgUrl, 'polygon');
+    var coordinatePairsString = _createCoordinatePairString(coordinatePairs);
+
+    polygon.setAttributeNS(null, 'points', coordinatePairsString);
+
+    return polygon;
+  }
+
+  // helper method for polyline and polygon
+  function _createCoordinatePairString(coordinatePairs) {
     var coordinatePairsString = "";
+
     coordinatePairs.forEach(function(coordinate, index) {
       coordinatePairsString += coordinate;
-      if (index === 0 && index % 2 === 0) {
+      if (index === 0 || index % 2 === 0) {
         coordinatePairsString += ',';
       } else {
         coordinatePairsString += ' ';
       }
     });
 
-    polyline.setAttributeNS(null, 'points', coordinatePairsString);
-
-    return polyline;
+    return coordinatePairsString;
   }
 
   /**
@@ -217,6 +243,7 @@
     ellipse: ellipse,
     fill: fill,
     line: line,
+    polygon: polygon,
     polyline: polyline,
     rect: rect,
     stroke: stroke,
