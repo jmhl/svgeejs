@@ -38,7 +38,7 @@
    * @param {number} cy The y-coordinate of the center of the circle.
    * @param {number} radius The radius of the circle.
    *
-   * @returns The SVG circle element to be appended to the SVG canvas.
+   * @returns {element} The SVG circle element to be appended to the SVG canvas.
    */
   function circle(cx, cy, radius) {
     var circle = document.createElementNS(w3SvgUrl, 'circle');
@@ -59,7 +59,7 @@
    * @param {number} rx The horizontal radius of the ellipse.
    * @param {number} ry The vertical radius of the ellipse.
    *
-   * @returns The SVG ellipse element to be append to the SVG canvas.
+   * @returns {element} The SVG ellipse element to be append to the SVG canvas.
    */
   function ellipse(cx, cy, rx, ry) {
     var ellipse = document.createElementNS(w3SvgUrl, 'ellipse');
@@ -80,7 +80,7 @@
    * @param {number} width The width of the rectangle.
    * @param {number} height The height of the rectangle.
    *
-   * @returns The SVG rectangle element to be appended to the SVG canvas.
+   * @returns {element} The SVG rectangle element to be appended to the SVG canvas.
    */
   function rect(x, y, width, height) {
     var rect = document.createElementNS(w3SvgUrl, 'rect');
@@ -100,7 +100,7 @@
    * @param {number} y The y-coordiante of the top left corner of the square.
    * @param {number} sideLength The length of the sides of the square.
    *
-   * @returns The SVG rectangle element to be appended to the SVG canvas.
+   * @returns {element} The SVG rectangle element to be appended to the SVG canvas.
    */
   function square(x, y, sideLength) {
     // delegate to rect function
@@ -115,7 +115,7 @@
    * @param {number} x2 The x-coordinate of the second point.
    * @param {number} y2 The y-coordinate of the second point.
    *
-   * @returns The SVG line element to be added to the SVG canvas.
+   * @returns {element} The SVG line element to be added to the SVG canvas.
    */
   function line(x1, y1, x2, y2) {
     var line = document.createElementNS(w3SvgUrl, 'line');
@@ -133,7 +133,7 @@
    *
    * @param {array} coordinatePairs An array of coordinate pairs. Each coordinate point but have a pair (e.g. [x1, y1, x2, y2]).
    *
-   * @returns The SVG polyline element to be added to the SVG canvas. Returns false a coordinate does not have a pair coordinate.
+   * @returns {element} The SVG polyline element to be added to the SVG canvas. Returns false a coordinate does not have a pair coordinate.
    */
   // TODO: throw an error when each coordinate does not have a pair
   function polyline(coordinatePairs) {
@@ -152,7 +152,7 @@
    *
    * @param {array} coordinatePairs An array of coordinate pairs. Each coordinate point but have a pair (e.g. [x1, y1, x2, y2]).
    *
-   * @returns The SVG polygon element to be added to the SVG canvas. Returns false a coordinate does not have a pair coordinate.
+   * @returns {element} The SVG polygon element to be added to the SVG canvas. Returns false a coordinate does not have a pair coordinate.
    */
   // TODO: throw an error when each coordinate does not have a pair
   function polygon(coordinatePairs) {
@@ -203,11 +203,11 @@
    * @param {string} strokeLinecap (optional) Caps the ends of the stroke, can be: 'butt', 'round', or 'square'.
    * @param {string} strokeLinejoin (optional) Defines how the join between two lines is rendered, can be: 'bevel', 'miter', or 'round'.
    * @param {number} strokeMiterlimit (optional) When strokeLinejoin === 'miter', this variable limits how far between the point the two lines meet.
-   * @param {number number number number} strokeDasharray (optional) Creates a dashed stroke, the values determine the length of the dashes and spaces.
+   * @param {number} strokeDasharray (optional) Creates a dashed stroke, the values determine the length of the dashes and spaces. Takes numbers in the format: 0 0 0 0.
    * @param {number} strokeDashoffset (optional) When strokeDasharray is defined, this value is used to determine how far into the stroke to start the dash pattern.
    * @param {number} strokeOpacity (optional) Value between 0 and 1 which determines the opacity of the stroke.
    *
-   * @returns 
+   * @returns {element} Returns the SVG element.
    */
   // TODO: use an options hash
   function stroke(element, strokeWidth, color, strokeLinecap, strokeLinejoin, strokeMiterlimit, strokeDasharray, strokeDashoffset, strokeOpacity) {
