@@ -12,6 +12,7 @@
       var rect = SVGEE.rect(300, 300, 180, 80);
       var ellipse = SVGEE.ellipse(400, 50, 40, 40);
       var square = SVGEE.square(0, 0, 10);
+      var line = SVGEE.line(15, 15, 40, 40);
 
       canvas.appendChild(svg);
 
@@ -29,6 +30,9 @@
 
       SVGEE.fill(square, '#000');
       svg.appendChild(square);
+
+      SVGEE.stroke(line, 5, '#3B4D7D');
+      svg.appendChild(line);
 
       SVGEE.closeSvg(svg);
     </script>
