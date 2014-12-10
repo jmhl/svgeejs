@@ -129,6 +129,34 @@
   }
 
   /**
+   * Creates an SVG polyline element.
+   *
+   * @param {array} coordinatePairs An array of coordinate pairs. Each coordinate point but have a pair (e.g. [x1, y1, x2, y2]).
+   *
+   * @returns The SVG line element to be added to the SVG canvas. Returns false a coordinate does not have a pair coordinate.
+   */
+  // TODO: throw an error when each coordinate does not have a pair
+  function polyline(coordinatePairs) {
+    if (coordinatePairs.length % 2 !== 0) { return false; }
+
+    var polyline = document.createElementNS(w3SvgUrl, 'polyline');
+
+    var coordinatePairsString = "";
+    coordinatePairs.forEach(function(coordinate, index) {
+      coordinatePairsString += coordinate;
+      if (index === 0 && index % 2 === 0) {
+        coordinatePairsString += ',';
+      } else {
+        coordinatePairsString += ' ';
+      }
+    });
+
+    polyline.setAttributeNS(null, 'points', coordinatePairsString);
+
+    return polyline;
+  }
+
+  /**
    * Fills the SVG element with a certain color.
    *
    * @param {element} element The SVG element to be filled.
@@ -189,6 +217,7 @@
     ellipse: ellipse,
     fill: fill,
     line: line,
+    polyline: polyline,
     rect: rect,
     stroke: stroke,
     square: square
