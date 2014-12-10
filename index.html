@@ -9,11 +9,18 @@
       var canvas = document.getElementById('canvas');
       var svg = SVGEE.createSvg(500, 500);
       var circle = SVGEE.circle(100, 100, 40);
+      var rect = SVGEE.rect(300, 300, 180, 80);
 
       canvas.appendChild(svg);
+
       SVGEE.fill(circle, '#ddd');
       SVGEE.stroke(circle, 2, '#000');
       svg.appendChild(circle);
+
+      SVGEE.fill(rect, '#54B52E');
+      SVGEE.stroke(rect, 4, '#3B4D7D');
+      svg.appendChild(rect);
+
       SVGEE.closeSvg(svg);
     </script>
   </body>

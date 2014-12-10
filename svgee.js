@@ -1,4 +1,7 @@
 (function SVGEE() {
+  // the w3 svg url to be reused basically everywhere
+  var w3SvgUrl = 'http://www.w3.org/2000/svg';
+
   /**
    * Closes the SVG
    *
@@ -6,8 +9,8 @@
    *
    * @returns Null.
    */
-  var closeSvg = function(element) {
-    element.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+  function closeSvg(element) {
+    element.setAttribute('xmlns', w3SvgUrl);
   };
 
   /**
@@ -18,8 +21,8 @@
    *
    * @returns {element} The SVG canvas element. The SVG canvas element to be appended to the document.
    */
-  var createSvg = function(width, height) {
-    var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  function createSvg(width, height) {
+    var svg = document.createElementNS(w3SvgUrl, 'svg');
 
     svg.setAttribute('width', width);
     svg.setAttribute('height', height);
@@ -37,16 +40,37 @@
    *
    * @returns The SVG circle element to be appended to the SVG canvas.
    */
-  var circle = function(cx, cy, radius) {
-    var circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+  function circle(cx, cy, radius) {
+    var circle = document.createElementNS(w3SvgUrl, 'circle');
 
-    circle.setAttribute('cx', cx);
-    circle.setAttribute('cy', cy);
-    circle.setAttribute('r', radius);
+    circle.setAttributeNS(null, 'cx', cx);
+    circle.setAttributeNS(null, 'cy', cy);
+    circle.setAttributeNS(null, 'r', radius);
 
     // circle still needs to be appended
     return circle;
   };
+
+  /**
+   * Creates an SVG rectangle element.
+   *
+   * @param {number} x The x-coordinate of the top left corner of the rectangle.
+   * @param {number} y The y-coordiante of the top left corner of the rectangle.
+   * @param {number} width The width of the rectangle.
+   * @param {number} height The height of the rectangle.
+   *
+   * @returns The SVG rectangle element to be appended to the SVG canvas.
+   */
+  function rect(x, y, width, height) {
+    var rect = document.createElementNS(w3SvgUrl, 'rect');
+
+    rect.setAttributeNS(null, 'x', x);
+    rect.setAttributeNS(null, 'y', y);
+    rect.setAttributeNS(null, 'width', width);
+    rect.setAttributeNS(null, 'height', height);
+
+    return rect;
+  }
 
   /**
    * Fills the SVG element with a certain color.
@@ -56,7 +80,7 @@
    *
    * @returns Null.
    */
-  var fill = function(element, color) {
+  function fill(element, color) {
     element.setAttribute('fill', color);
   };
 
@@ -75,7 +99,8 @@
    *
    * @returns 
    */
-  var stroke = function(element, strokeWidth, color, strokeLinecap, strokeLinejoin, strokeMiterlimit, strokeDasharray, strokeDashoffset, strokeOpacity) {
+  // TODO: use an options hash
+  function stroke(element, strokeWidth, color, strokeLinecap, strokeLinejoin, strokeMiterlimit, strokeDasharray, strokeDashoffset, strokeOpacity) {
     // element, strokeWidth, and color are required, others are optional
     var optionalAttrs = {
       'stroke-linecap': strokeLinecap,
@@ -106,6 +131,7 @@
     closeSvg: closeSvg,
     createSvg: createSvg,
     fill: fill,
+    rect: rect,
     stroke: stroke
   };
 
