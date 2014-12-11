@@ -1,4 +1,26 @@
 (function SVGEE() {
+  function nGon(numSides, center, lenSide) {
+    var x = center[0];
+    var y = center[1];
+    var angle = 360 / numSides;
+    var rAngle = angle / 2;
+    var oppSide = lenSide / 2;
+    var hypotenuse = oppSide / Math.sin(rAngle);
+    var topY = y - hypotenuse;
+    var leftX = x - hypotenuse;
+    var rightX = x + hypotenuse;
+    var bottomY = y + hypotenuse;
+    var points = [];
+
+    // x, y
+    points = points.concat([rightX, topY]);
+    points = points.concat([leftX, topY]);
+    points = points.concat([x, bottomY]);
+    
+    return polyline(points);
+  }
+
+
   // the w3 svg url to be reused basically everywhere
   var w3SvgUrl = 'http://www.w3.org/2000/svg';
 
@@ -288,6 +310,7 @@
     g: group,
     group: group,
     line: line,
+    nGon: nGon,
     polygon: polygon,
     polyline: polyline,
     rect: rect,

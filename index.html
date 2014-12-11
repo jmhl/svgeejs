@@ -8,46 +8,47 @@
     <script>
       var canvas = document.getElementById('canvas');
       var svg = SVGEE.createSvg(500, 500);
-      var circle1 = SVGEE.circle(100, 100, 40);
-      var circle2 = SVGEE.circle(120, 120, 40);
-      var rect = SVGEE.rect(300, 300, 180, 80);
-      var ellipse = SVGEE.ellipse(400, 50, 40, 40);
-      var square = SVGEE.square(0, 0, 10);
-      var line = SVGEE.line(15, 15, 40, 40);
-      var polyline = SVGEE.polyline([20, 100, 40, 60, 80, 90, 100, 20]);
-      var polygon = SVGEE.polyline([260, 220, 200, 240, 300, 280, 260, 300, 220, 280, 220, 240]);
-      var text = SVGEE.text(200, 400, 24, 'hello!');
-      var g = SVGEE.g([circle1, circle2]);
-
       canvas.appendChild(svg);
 
+      var circle1 = SVGEE.circle(100, 100, 40);
+      var circle2 = SVGEE.circle(120, 120, 40);
+      var g = SVGEE.g([circle1, circle2]);
       svg.appendChild(g);
 
+      var rect = SVGEE.rect(300, 300, 180, 80);
       SVGEE.fill(rect, '#54B52E');
       SVGEE.stroke(rect, 4, '#3B4D7D');
       svg.appendChild(rect);
 
+      var ellipse = SVGEE.ellipse(400, 50, 40, 40);
       SVGEE.fill(ellipse, '#fff');
       SVGEE.stroke(ellipse, 1, '#54B52E');
       svg.appendChild(ellipse);
 
+      var square = SVGEE.square(0, 0, 10);
       SVGEE.fill(square, '#000');
       svg.appendChild(square);
 
+      var line = SVGEE.line(15, 15, 40, 40);
       SVGEE.stroke(line, 5, '#3B4D7D');
       svg.appendChild(line);
 
+      var polyline = SVGEE.polyline([20, 100, 40, 60, 80, 90, 100, 20]);
       SVGEE.fill(polyline, 'transparent');
       SVGEE.stroke(polyline, 8, '#A73878');
       svg.appendChild(polyline);
 
+      var polygon = SVGEE.polyline([260, 220, 200, 240, 300, 280, 260, 300, 220, 280, 220, 240]);
       SVGEE.fill(polygon, '#89553C');
       SVGEE.stroke(polygon, 4, '#C12402');
       svg.appendChild(polygon);
 
+      var text = SVGEE.text(200, 400, 24, 'hello!');
       svg.appendChild(text);
 
-      SVGEE.closeSvg(svg);
+      var triangle = SVGEE.nGon(3, [300, 300], 20);
+      svg.appendChild(triangle);
+      SVGEE.fill(triangle, 'blue');
     </script>
   </body>
 </html>
