@@ -183,6 +183,26 @@
   }
 
   /**
+   * Creates an SVG text elment.
+   *
+   * @param {number} x The x-coordinate of the top left corner of the text.
+   * @param {number} y The y-coordiante of the top left corner of the text.
+   * @param {string} msg The text that you wish to display.
+   *
+   * @returns {element} The SVG text element to append to the SVG canvas.
+   */
+  function text(x, y, fontSize, msg) {
+    var text = document.createElementNS(w3SvgUrl, 'text');
+
+    text.setAttributeNS(null, 'x', x);
+    text.setAttributeNS(null, 'y', y);
+    text.setAttributeNS(null, 'font-size', fontSize);
+    text.textContent = msg;
+
+    return text;
+  }
+
+  /**
    * Fills the SVG element with a certain color.
    *
    * @param {element} element The SVG element to be filled.
@@ -247,7 +267,8 @@
     polyline: polyline,
     rect: rect,
     stroke: stroke,
-    square: square
+    square: square,
+    text: text
   };
 
   // actually expose the API

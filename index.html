@@ -15,6 +15,7 @@
       var line = SVGEE.line(15, 15, 40, 40);
       var polyline = SVGEE.polyline([20, 100, 40, 60, 80, 90, 100, 20]);
       var polygon = SVGEE.polyline([260, 220, 200, 240, 300, 280, 260, 300, 220, 280, 220, 240]);
+      var text = SVGEE.text(200, 400, 24, 'hello!');
 
       canvas.appendChild(svg);
 
@@ -43,6 +44,8 @@
       SVGEE.fill(polygon, '#89553C');
       SVGEE.stroke(polygon, 4, '#C12402');
       svg.appendChild(polygon);
+
+      svg.appendChild(text);
 
       SVGEE.closeSvg(svg);
     </script>
