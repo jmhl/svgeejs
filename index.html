@@ -8,7 +8,8 @@
     <script>
       var canvas = document.getElementById('canvas');
       var svg = SVGEE.createSvg(500, 500);
-      var circle = SVGEE.circle(100, 100, 40);
+      var circle1 = SVGEE.circle(100, 100, 40);
+      var circle2 = SVGEE.circle(120, 120, 40);
       var rect = SVGEE.rect(300, 300, 180, 80);
       var ellipse = SVGEE.ellipse(400, 50, 40, 40);
       var square = SVGEE.square(0, 0, 10);
@@ -16,12 +17,11 @@
       var polyline = SVGEE.polyline([20, 100, 40, 60, 80, 90, 100, 20]);
       var polygon = SVGEE.polyline([260, 220, 200, 240, 300, 280, 260, 300, 220, 280, 220, 240]);
       var text = SVGEE.text(200, 400, 24, 'hello!');
+      var g = SVGEE.g([circle1, circle2]);
 
       canvas.appendChild(svg);
 
-      SVGEE.fill(circle, '#ddd');
-      SVGEE.stroke(circle, 2, '#000');
-      svg.appendChild(circle);
+      svg.appendChild(g);
 
       SVGEE.fill(rect, '#54B52E');
       SVGEE.stroke(rect, 4, '#3B4D7D');

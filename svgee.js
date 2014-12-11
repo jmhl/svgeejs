@@ -255,6 +255,29 @@
     return element;
   };
 
+  /**
+   * Creates an SVG group element that includes the elements passed in to the function.
+   *
+   * @param {array} elements The elements in the group.
+   * @param {string} identifier (optional) An id to apply to the element.
+   *
+   * @returns The SVG group elment to append to the SVG canvas.
+   *
+   */
+  function group(elements, identifier) {
+    var group = document.createElementNS(w3SvgUrl, 'g');
+
+    if (identifier) {
+      groupg.setAttribute('id', identifier);
+    }
+
+    elements.forEach(function(element) {
+      group.appendChild(element);
+    });
+
+    return group;
+  }
+
   // API to expose
   var SVGEE = {
     circle: circle,
@@ -262,6 +285,8 @@
     createSvg: createSvg,
     ellipse: ellipse,
     fill: fill,
+    g: group,
+    group: group,
     line: line,
     polygon: polygon,
     polyline: polyline,
