@@ -9,6 +9,7 @@
       var canvas = document.getElementById('canvas');
       var svg = SVGEE.createSvg(500, 500);
       canvas.appendChild(svg);
+      SVGEE.closeSvg(svg);
 
       var circle1 = SVGEE.circle(100, 100, 40);
       var circle2 = SVGEE.circle(120, 120, 40);
@@ -20,7 +21,7 @@
       SVGEE.stroke(rect, 4, '#3B4D7D');
       svg.appendChild(rect);
 
-      var ellipse = SVGEE.ellipse(400, 50, 40, 40);
+      var ellipse = SVGEE.ellipse(400, 50, 60, 40);
       SVGEE.fill(ellipse, '#fff');
       SVGEE.stroke(ellipse, 1, '#54B52E');
       svg.appendChild(ellipse);
@@ -38,7 +39,7 @@
       SVGEE.stroke(polyline, 8, '#A73878');
       svg.appendChild(polyline);
 
-      var polygon = SVGEE.polyline([260, 220, 200, 240, 300, 280, 260, 300, 220, 280, 220, 240]);
+      var polygon = SVGEE.polyline([160, 120, 100, 140, 200, 180, 160, 200, 120, 180, 120, 140]);
       SVGEE.fill(polygon, '#89553C');
       SVGEE.stroke(polygon, 4, '#C12402');
       svg.appendChild(polygon);
@@ -46,9 +47,10 @@
       var text = SVGEE.text(200, 400, 24, 'hello!');
       svg.appendChild(text);
 
-      var triangle = SVGEE.nGon(3, [300, 300], 20);
-      svg.appendChild(triangle);
-      SVGEE.fill(triangle, 'blue');
+      var nGon = SVGEE.nGon(8, [300, 200], 100);
+      svg.appendChild(nGon);
+      SVGEE.stroke(nGon, 2, '#862EB3');
+      SVGEE.fill(nGon, 'transparent');
     </script>
   </body>
 </html>

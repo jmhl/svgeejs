@@ -1,26 +1,4 @@
 (function SVGEE() {
-  function nGon(numSides, center, lenSide) {
-    var x = center[0];
-    var y = center[1];
-    var angle = 360 / numSides;
-    var rAngle = angle / 2;
-    var oppSide = lenSide / 2;
-    var hypotenuse = oppSide / Math.sin(rAngle);
-    var topY = y - hypotenuse;
-    var leftX = x - hypotenuse;
-    var rightX = x + hypotenuse;
-    var bottomY = y + hypotenuse;
-    var points = [];
-
-    // x, y
-    points = points.concat([rightX, topY]);
-    points = points.concat([leftX, topY]);
-    points = points.concat([x, bottomY]);
-    
-    return polyline(points);
-  }
-
-
   // the w3 svg url to be reused basically everywhere
   var w3SvgUrl = 'http://www.w3.org/2000/svg';
 
@@ -162,7 +140,7 @@
     if (coordinatePairs.length % 2 !== 0) { return false; }
 
     var polyline = document.createElementNS(w3SvgUrl, 'polyline');
-    var coordinatePairsString = _createCoordinatePairString(coordinatePairs);
+    var coordinatePairsString = createCoordinatePairString(coordinatePairs);
 
     polyline.setAttributeNS(null, 'points', coordinatePairsString);
 
@@ -181,7 +159,7 @@
     if (coordinatePairs.length % 2 !== 0) { return false; }
 
     var polygon = document.createElementNS(w3SvgUrl, 'polygon');
-    var coordinatePairsString = _createCoordinatePairString(coordinatePairs);
+    var coordinatePairsString = createCoordinatePairString(coordinatePairs);
 
     polygon.setAttributeNS(null, 'points', coordinatePairsString);
 
@@ -189,7 +167,7 @@
   }
 
   // helper method for polyline and polygon
-  function _createCoordinatePairString(coordinatePairs) {
+  function createCoordinatePairString(coordinatePairs) {
     var coordinatePairsString = "";
 
     coordinatePairs.forEach(function(coordinate, index) {
@@ -222,6 +200,49 @@
     text.textContent = msg;
 
     return text;
+  }
+
+  /** Creates an SVG nGon element - an n-sided regular polygon.
+   * 
+   * @param {number} numSides The number of sides you want your polygon to have.
+   * @param {array} center An array of coordinates on the SVG canvas that will be the center of the polygon.
+   * @param {number} lenSide The length of each side of the polygon.
+   *
+   * @returns {element} The SVG nGon element (which is just a polyline element with the coordinates calculated for you!).
+   */
+  function nGon(numSides, center, lenSide) {
+    var x = center[0];
+    var y = center[1];
+    var angle = 360 / numSides;
+    var angleInc = angle;
+    var oppSide = lenSide / 2;
+    var hypotenuse = oppSide / Math.sin(toRadians(angle));
+    var points = [];
+    var startX = x;
+    var startY = y + hypotenuse;
+
+    while (angle <= 360 + angleInc) {
+      var endX = calculateX(x, hypotenuse, angle);
+      var endY = calculateY(y, hypotenuse, angle);
+      points = points.concat([endX, endY]);
+      angle += angleInc;
+    }
+
+    return polyline(points);
+  }
+
+  function calculateX(x, len, angle) {
+    x += len * Math.cos(toRadians(angle));
+    return x;
+  }
+
+  function calculateY(y, len, angle) {
+    y += len * Math.sin(toRadians(angle));
+    return y;
+  }
+
+  function toRadians(degrees) {
+    return degrees * (Math.PI / 180);
   }
 
   /**
