@@ -270,7 +270,7 @@
     var maxX = canvas.getAttribute('width');
     var maxY = canvas.getAttribute('height');
     var radius = calculateRadius(numSides, lenSide);
-    var rows = maxY / radius + 1;
+    var rows = maxY / radius + 10;
     var diameter = radius * 2
     var elements = [];
     var elementsInRow = (maxX / diameter);
@@ -287,7 +287,7 @@
         elementXPosition += diameter + radius;
       }
 
-      elementYPosition += radius * 0.9;
+      elementYPosition += radius * 0.86;
     }
 
     var tileGroup = group(elements);

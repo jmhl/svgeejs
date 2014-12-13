@@ -1,10 +1,32 @@
 <html>
   <head>
+    <style>
+      #tile {
+        position: relative;
+        width: 800px;
+        height: 500px;
+      }
+
+      .test-btn {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 140px;
+        padding: 12px;
+        border-radius: 4px;
+        border: 0;
+        background-color: #54B52E;
+        font-family: 'Helvetica Neue';
+        font-size: 16px;
+        color: white;
+      }
+    </style>
     <script src="./svgee.js"></script>
   </head>
   <body>
     <div id="canvas"></div>
-    <div id="tile"></div>
+    <div id="tile"><button class="test-btn">Click me</button></div>
 
     <script>
       var canvas = document.getElementById('canvas');
