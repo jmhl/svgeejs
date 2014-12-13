@@ -257,7 +257,7 @@
    * Tiles a canvas with an element, good for backgrounds.
    *
    * @param {element} canvas The SVG canvas element that you want tiled.
-   * @param {string} element The type of SVG element that you want tiled. Options are: 'hexagon'
+   * @param {object} element An object that includes the number of sides of the element you want to tile (numSides) and the length of those sides (lenSide). 
    * @param {array} startCoords (optional) The coordinates where you want to start the tiling. If not entered, will default to [0, 0].
    *
    * @returns An SVG group element to be appended to the SVG canvas.
@@ -392,5 +392,9 @@
   };
 
   // actually expose the API
-  return this.SVGEE = SVGEE;
+  if (module.exports) {
+    module.exports = SVGEE;
+  } else {
+    this.SVGEE = SVGEE;
+  }
 })();

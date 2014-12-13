@@ -12,13 +12,13 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 140px;
-        padding: 12px;
+        width: 180px;
+        padding: 15px 20px;
         border-radius: 4px;
         border: 0;
         background-color: #54B52E;
         font-family: 'Helvetica Neue';
-        font-size: 16px;
+        font-size: 18px;
         color: white;
       }
     </style>
@@ -26,7 +26,9 @@
   </head>
   <body>
     <div id="canvas"></div>
-    <div id="tile"><button class="test-btn">Click me</button></div>
+    <div id="tile">
+      <button class="test-btn">Click me</button>
+    </div>
 
     <script>
       var canvas = document.getElementById('canvas');
@@ -83,12 +85,11 @@
       SVGEE.closeSvg(tileCanvas);
 
       var element = {
-        lenSide: 80,
+        lenSide: 100,
         numSides: 6
       };
 
       var tile = SVGEE.tile(tileCanvas, element, [0, 0]);
-      console.log(tile);
       tileCanvas.appendChild(tile);
       SVGEE.fill(tile, 'transparent');
       SVGEE.stroke(tile, 1, '#54B52E');
