@@ -3,17 +3,6 @@
   var w3SvgUrl = 'http://www.w3.org/2000/svg';
 
   /**
-   * Closes the SVG
-   *
-   * @param {element} element The SVG element that you want to close.
-   *
-   * @returns Null.
-   */
-  function closeSvg(element) {
-    element.setAttribute('xmlns', w3SvgUrl);
-  };
-
-  /**
    * Creates an SVG canvas
    *
    * @param {number} width The width of the SVG canvas.
@@ -29,6 +18,17 @@
 
     // svg still needs to be appended
     return svg;
+  };
+
+  /**
+   * Closes the SVG canvas
+   *
+   * @param {element} element The SVG element that you want to close.
+   *
+   * @returns Null.
+   */
+  function closeSvg(element) {
+    element.setAttribute('xmlns', w3SvgUrl);
   };
 
   /**
@@ -217,6 +217,7 @@
     var angleInc = angle;
     var oppSide = lenSide / 2;
     var hypotenuse = oppSide / Math.sin(toRadians(angle));
+    console.log(hypotenuse);
     var points = [];
     var startX = x;
     var startY = y + hypotenuse;
@@ -243,6 +244,46 @@
 
   function toRadians(degrees) {
     return degrees * (Math.PI / 180);
+  }
+
+  /**
+   * Tiles a canvas with an element, good for backgrounds.
+   *
+   * @param {element} canvas The SVG canvas element that you want tiled.
+   * @param {string} element The type of SVG element that you want tiled. Options are: 'hexagon'
+   * @param {array} startCoords (optional) The coordinates where you want to start the tiling. If not entered, will default to [0, 0].
+   *
+   * @returns An SVG group element to be appended to the SVG canvas.
+   */
+  function tile(canvas, element, startCoords) {
+    var startX = startCoords[0] || 0;
+    var startY = startCoords[1] || 0;
+    var maxX = canvas.getAttribute('width');
+    var maxY = canvas.getAttribute('height');
+    var rows = 5;
+    var radius = 56.568542494923804;
+    var diameter = radius * 2
+    var elements = [];
+    var elementsInRow = (maxX / diameter) / 2;
+    var elementYPosition = startY;
+
+    for (var i = 1; i <= rows; i += 1) {
+      var elementXPosition = i % 2 === 0
+        ? radius
+        : startX;
+
+      for (var j = 0; j < elementsInRow; j += 1) {
+        var el = nGon(8, [elementXPosition, elementYPosition], 80);
+        elements.push(el);
+        elementXPosition += elementXPosition;
+      }
+
+      elementYPosition += elementYPosition;
+    }
+
+    var tileGroup = group(elements);
+
+    return tileGroup;
   }
 
   /**
@@ -311,7 +352,7 @@
     var group = document.createElementNS(w3SvgUrl, 'g');
 
     if (identifier) {
-      groupg.setAttribute('id', identifier);
+      group.setAttribute('id', identifier);
     }
 
     elements.forEach(function(element) {
@@ -337,7 +378,8 @@
     rect: rect,
     stroke: stroke,
     square: square,
-    text: text
+    text: text,
+    tile: tile
   };
 
   // actually expose the API

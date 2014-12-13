@@ -4,6 +4,7 @@
   </head>
   <body>
     <div id="canvas"></div>
+    <div id="tile"></div>
 
     <script>
       var canvas = document.getElementById('canvas');
@@ -47,10 +48,21 @@
       var text = SVGEE.text(200, 400, 24, 'hello!');
       svg.appendChild(text);
 
-      var nGon = SVGEE.nGon(8, [300, 200], 100);
+      var nGon = SVGEE.nGon(8, [300, 200], 80);
       svg.appendChild(nGon);
       SVGEE.stroke(nGon, 2, '#862EB3');
       SVGEE.fill(nGon, 'transparent');
+
+
+      // test tile
+      var tileDiv = document.getElementById('tile');
+      var tileCanvas = SVGEE.createSvg(800, 500);
+      tileDiv.appendChild(tileCanvas);
+      SVGEE.closeSvg(tileCanvas);
+
+      var tile = SVGEE.tile(tileCanvas, 'hexagon', [0, 0]);
+      console.log(tile);
+      tileCanvas.appendChild(tile);
     </script>
   </body>
 </html>
