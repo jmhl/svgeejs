@@ -349,13 +349,31 @@
   };
 
   /**
+   *
+   */
+  function animate(element, attributeName, from, to, duration, repeatCount) {
+    var animation = document.createElementNS(w3SvgUrl, 'animate');
+
+    animation.setAttributeNS(null, 'attributeType', 'XML');
+    animation.setAttributeNS(null, 'attributeName', attributeName);
+    animation.setAttributeNS(null, 'from', from);
+    animation.setAttributeNS(null, 'to', to);
+    animation.setAttributeNS(null, 'dur', duration);
+    animation.setAttributeNS(null, 'repeatCount', repeatCount);
+
+    // circle still needs to be appended
+    element.appendChild(animation);
+
+    return element;
+  }
+
+  /**
    * Creates an SVG group element that includes the elements passed in to the function.
    *
    * @param {array} elements The elements in the group.
    * @param {string} identifier (optional) An id to apply to the element.
    *
    * @returns The SVG group elment to append to the SVG canvas.
-   *
    */
   function group(elements, identifier) {
     var group = document.createElementNS(w3SvgUrl, 'g');
@@ -373,6 +391,7 @@
 
   // API to expose
   var SVGEE = {
+    animate: animate,
     circle: circle,
     closeSvg: closeSvg,
     createSvg: createSvg,
@@ -392,9 +411,5 @@
   };
 
   // actually expose the API
-  if (module.exports) {
-    module.exports = SVGEE;
-  } else {
-    this.SVGEE = SVGEE;
-  }
+  this.SVGEE = SVGEE;
 })();
