@@ -216,8 +216,7 @@
     var angle = 360 / numSides;
     var angleInc = angle;
     var oppSide = lenSide / 2;
-    var hypotenuse = oppSide / Math.sin(toRadians(angle));
-    console.log(hypotenuse);
+    var hypotenuse = calculateRadius(numSides, lenSide);
     var points = [];
     var startX = x;
     var startY = y + hypotenuse;
@@ -230,6 +229,14 @@
     }
 
     return polyline(points);
+  }
+
+  function calculateRadius(numSides, lenSide) {
+    var angle = 360 / numSides;
+    var oppSide = lenSide / 2;
+    var hypotenuse = oppSide / Math.sin(toRadians(angle));
+    
+    return hypotenuse;
   }
 
   function calculateX(x, len, angle) {
@@ -258,27 +265,29 @@
   function tile(canvas, element, startCoords) {
     var startX = startCoords[0] || 0;
     var startY = startCoords[1] || 0;
+    var numSides = element.numSides;
+    var lenSide = element.lenSide;
     var maxX = canvas.getAttribute('width');
     var maxY = canvas.getAttribute('height');
-    var rows = 5;
-    var radius = 56.568542494923804;
+    var radius = calculateRadius(numSides, lenSide);
+    var rows = maxY / radius + 1;
     var diameter = radius * 2
     var elements = [];
-    var elementsInRow = (maxX / diameter) / 2;
+    var elementsInRow = (maxX / diameter);
     var elementYPosition = startY;
 
     for (var i = 1; i <= rows; i += 1) {
       var elementXPosition = i % 2 === 0
-        ? radius
+        ? radius * 1.5 
         : startX;
 
       for (var j = 0; j < elementsInRow; j += 1) {
-        var el = nGon(8, [elementXPosition, elementYPosition], 80);
+        var el = nGon(numSides, [elementXPosition, elementYPosition], lenSide);
         elements.push(el);
-        elementXPosition += elementXPosition;
+        elementXPosition += diameter + radius;
       }
 
-      elementYPosition += elementYPosition;
+      elementYPosition += radius * 0.9;
     }
 
     var tileGroup = group(elements);

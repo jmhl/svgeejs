@@ -60,9 +60,16 @@
       tileDiv.appendChild(tileCanvas);
       SVGEE.closeSvg(tileCanvas);
 
-      var tile = SVGEE.tile(tileCanvas, 'hexagon', [0, 0]);
+      var element = {
+        lenSide: 80,
+        numSides: 6
+      };
+
+      var tile = SVGEE.tile(tileCanvas, element, [0, 0]);
       console.log(tile);
       tileCanvas.appendChild(tile);
+      SVGEE.fill(tile, 'transparent');
+      SVGEE.stroke(tile, 1, '#54B52E');
     </script>
   </body>
 </html>
