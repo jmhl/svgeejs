@@ -77,6 +77,7 @@
 
       var text = SVGEE.text(200, 400, 24, 'hello!');
       svg.appendChild(text);
+      text.setAttribute('class', 'test-text');
 
       var nGon = SVGEE.nGon(8, [300, 200], 120);
       svg.appendChild(nGon);
