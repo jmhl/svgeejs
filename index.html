@@ -40,11 +40,13 @@
       var circle2 = SVGEE.circle(120, 120, 40);
       var g = SVGEE.g([circle1, circle2]);
       svg.appendChild(g);
+      circle1.setAttribute('class', 'test-circle');
 
       var rect = SVGEE.rect(300, 300, 180, 80);
       SVGEE.fill(rect, '#54B52E');
       SVGEE.stroke(rect, 4, '#3B4D7D');
       svg.appendChild(rect);
+      rect.setAttribute('class', 'test-rect');
 
       var ellipse = SVGEE.ellipse(400, 50, 60, 40);
       SVGEE.fill(ellipse, '#fff');
