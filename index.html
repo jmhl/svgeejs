@@ -52,6 +52,7 @@
       SVGEE.fill(ellipse, '#fff');
       SVGEE.stroke(ellipse, 1, '#54B52E');
       svg.appendChild(ellipse);
+      ellipse.setAttribute('class', 'test-ellipse');
 
       var square = SVGEE.square(0, 0, 10);
       SVGEE.fill(square, '#000');
@@ -74,7 +75,7 @@
       var text = SVGEE.text(200, 400, 24, 'hello!');
       svg.appendChild(text);
 
-      var nGon = SVGEE.nGon(8, [300, 200], 80);
+      var nGon = SVGEE.nGon(8, [300, 200], 120);
       svg.appendChild(nGon);
       SVGEE.stroke(nGon, 2, '#862EB3');
       SVGEE.fill(nGon, 'transparent');

@@ -1,5 +1,3 @@
-var SVGEE = require('../SVGEE');
-
 var numOfTests = 4;
 
 casper.test.begin('testing circle', numOfTests, function(test) {
