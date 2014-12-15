@@ -57,6 +57,7 @@
       var square = SVGEE.square(0, 0, 10);
       SVGEE.fill(square, '#000');
       svg.appendChild(square);
+      square.setAttribute('class', 'test-square');
 
       var line = SVGEE.line(15, 15, 40, 40);
       SVGEE.stroke(line, 5, '#3B4D7D');
