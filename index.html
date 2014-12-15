@@ -68,6 +68,7 @@
       SVGEE.fill(polyline, 'transparent');
       SVGEE.stroke(polyline, 8, '#A73878');
       svg.appendChild(polyline);
+      polyline.setAttribute('class', 'test-polyline');
 
       var polygon = SVGEE.polyline([160, 120, 100, 140, 200, 180, 160, 200, 120, 180, 120, 140]);
       SVGEE.fill(polygon, '#89553C');
