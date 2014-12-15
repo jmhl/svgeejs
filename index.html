@@ -62,6 +62,7 @@
       var line = SVGEE.line(15, 15, 40, 40);
       SVGEE.stroke(line, 5, '#3B4D7D');
       svg.appendChild(line);
+      line.setAttribute('class', 'test-line');
 
       var polyline = SVGEE.polyline([20, 100, 40, 60, 80, 90, 100, 20]);
       SVGEE.fill(polyline, 'transparent');
