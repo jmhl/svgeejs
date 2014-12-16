@@ -7,17 +7,20 @@ casper.test.begin('testing text', numOfTests, function(test) {
     test.assertExists('.test-text', 'text exists');
     test.assertSelectorHasText('text', 'hello!');
 
-    test.assertEvalEquals(function() {
-      return document.getElementsByClassName('test-text')[0].getAttribute('x');
-    }, '200');
+    test.assertEquals(
+        this.getElementsAttribute('.test-text', 'x'), ['200'],
+        'should have the correct x'
+    );
 
-    test.assertEvalEquals(function() {
-      return document.getElementsByClassName('test-text')[0].getAttribute('y');
-    }, '400');
+    test.assertEquals(
+        this.getElementsAttribute('.test-text', 'y'), ['400'],
+        'should have the correct y'
+    );
 
-    test.assertEvalEquals(function() {
-      return document.getElementsByClassName('test-text')[0].getAttribute('font-size');
-    }, '24');
+    test.assertEquals(
+        this.getElementsAttribute('.test-text', 'font-size'), ['24'],
+        'should have the correct font size'
+    );
   });
 
   casper.run(function() {

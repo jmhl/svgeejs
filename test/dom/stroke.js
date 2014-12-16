@@ -1,18 +1,18 @@
 var numOfTests = 2;
 
-casper.test.begin('testing stroke', numOfTests, function(test) {
+casper.test.begin('stroke', numOfTests, function(test) {
   casper.start('http://localhost:8000/');
 
   casper.thenOpen('http://localhost:8000/', function() {
-    test.assertEvalEquals(function() {
-      return document.getElementsByClassName('test-rect')[0].getAttribute('stroke');
-    }, '#3B4D7D');
-  });
+    test.assertEquals(
+        this.getElementsAttribute('.test-rect', 'stroke'), ['#3B4D7D'],
+        'should have the correct stroke color'
+    );
 
-  casper.thenOpen('http://localhost:8000/', function() {
-    test.assertEvalEquals(function() {
-      return document.getElementsByClassName('test-rect')[0].getAttribute('stroke-width');
-    }, '4');
+    test.assertEquals(
+        this.getElementsAttribute('.test-rect', 'stroke-width'), ['4'],
+        'should have the correct stroke width'
+    );
   });
 
   casper.run(function() {

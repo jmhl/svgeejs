@@ -1,26 +1,30 @@
 var numOfTests = 5;
 
-casper.test.begin('testing ellipse', numOfTests, function(test) {
+casper.test.begin('ellipse', numOfTests, function(test) {
   casper.start('http://localhost:8000/');
 
   casper.thenOpen('http://localhost:8000/', function() {
     test.assertExists('.test-ellipse', 'ellipse exists');
 
-    test.assertEvalEquals(function() {
-      return document.getElementsByClassName('test-ellipse')[0].getAttribute('cx');
-    }, '400');
+    test.assertEquals(
+        this.getElementsAttribute('.test-ellipse', 'rx'), ['60'],
+        'should have the correct rx'
+    );
 
-    test.assertEvalEquals(function() {
-      return document.getElementsByClassName('test-ellipse')[0].getAttribute('cy');
-    }, '50');
+    test.assertEquals(
+        this.getElementsAttribute('.test-ellipse', 'ry'), ['40'],
+        'should have the correct ry'
+    );
 
-    test.assertEvalEquals(function() {
-      return document.getElementsByClassName('test-ellipse')[0].getAttribute('rx');
-    }, '60');
+    test.assertEquals(
+        this.getElementsAttribute('.test-ellipse', 'cx'), ['400'],
+        'should have the correct cx'
+    );
 
-    test.assertEvalEquals(function() {
-      return document.getElementsByClassName('test-ellipse')[0].getAttribute('ry');
-    }, '40');
+    test.assertEquals(
+        this.getElementsAttribute('.test-ellipse', 'cy'), ['50'],
+        'should have the correct cy'
+    );
   });
 
   casper.run(function() {
