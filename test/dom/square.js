@@ -7,23 +7,23 @@ casper.test.begin('square', numOfTests, function(test) {
     test.assertExists('.test-square', 'square exists');
 
     test.assertEquals(
-        this.getElementsAttribute('.test-square', 'x'), ['0'],
-        'should have the correct x'
+      this.getElementsAttribute('.test-square', 'x'), ['0'],
+      'should have the correct x'
     );
 
     test.assertEquals(
-        this.getElementsAttribute('.test-square', 'y'), ['0'],
-        'should have the correct y'
+      this.getElementsAttribute('.test-square', 'y'), ['0'],
+      'should have the correct y'
     );
 
     test.assertEquals(
-        this.getElementsAttribute('.test-square', 'width'), ['10'],
-        'should have the correct width'
+      this.getElementsAttribute('.test-square', 'width'), ['10'],
+      'should have the correct width'
     );
 
     test.assertEquals(
-        this.getElementsAttribute('.test-square', 'height'), ['10'],
-        'should have the correct height'
+      this.getElementsAttribute('.test-square', 'height'), ['10'],
+      'should have the correct height'
     );
   });
 

@@ -7,18 +7,18 @@ casper.test.begin('circle', numOfTests, function(test) {
     test.assertExists('.test-circle', 'circle exists');
 
     test.assertEquals(
-        this.getElementsAttribute('.test-circle', 'r'), ['40'],
-        'should have the correct radius'
+      this.getElementsAttribute('.test-circle', 'r'), ['40'],
+      'should have the correct radius'
     );
 
     test.assertEquals(
-        this.getElementsAttribute('.test-circle', 'cx'), ['100'],
-        'should have the correct cx'
+      this.getElementsAttribute('.test-circle', 'cx'), ['100'],
+      'should have the correct cx'
     );
 
     test.assertEquals(
-        this.getElementsAttribute('.test-circle', 'cy'), ['100'],
-        'should have the correct cy'
+      this.getElementsAttribute('.test-circle', 'cy'), ['100'],
+      'should have the correct cy'
     );
   });
 

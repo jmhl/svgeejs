@@ -8,18 +8,18 @@ casper.test.begin('testing text', numOfTests, function(test) {
     test.assertSelectorHasText('text', 'hello!');
 
     test.assertEquals(
-        this.getElementsAttribute('.test-text', 'x'), ['200'],
-        'should have the correct x'
+      this.getElementsAttribute('.test-text', 'x'), ['200'],
+      'should have the correct x'
     );
 
     test.assertEquals(
-        this.getElementsAttribute('.test-text', 'y'), ['400'],
-        'should have the correct y'
+      this.getElementsAttribute('.test-text', 'y'), ['400'],
+      'should have the correct y'
     );
 
     test.assertEquals(
-        this.getElementsAttribute('.test-text', 'font-size'), ['24'],
-        'should have the correct font size'
+      this.getElementsAttribute('.test-text', 'font-size'), ['24'],
+      'should have the correct font size'
     );
   });
 

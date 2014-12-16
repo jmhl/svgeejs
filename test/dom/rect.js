@@ -7,23 +7,23 @@ casper.test.begin('rect', numOfTests, function(test) {
     test.assertExists('.test-rect', 'rect exists');
 
     test.assertEquals(
-        this.getElementsAttribute('.test-rect', 'x'), ['300'],
-        'should have the correct x'
+      this.getElementsAttribute('.test-rect', 'x'), ['300'],
+      'should have the correct x'
     );
 
     test.assertEquals(
-        this.getElementsAttribute('.test-rect', 'y'), ['300'],
-        'should have the correct y'
+      this.getElementsAttribute('.test-rect', 'y'), ['300'],
+      'should have the correct y'
     );
 
     test.assertEquals(
-        this.getElementsAttribute('.test-rect', 'width'), ['180'],
-        'should have the correct width'
+      this.getElementsAttribute('.test-rect', 'width'), ['180'],
+      'should have the correct width'
     );
 
     test.assertEquals(
-        this.getElementsAttribute('.test-rect', 'height'), ['80'],
-        'should have the correct height'
+      this.getElementsAttribute('.test-rect', 'height'), ['80'],
+      'should have the correct height'
     );
   });
 

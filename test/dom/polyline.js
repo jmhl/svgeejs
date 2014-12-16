@@ -7,8 +7,8 @@ casper.test.begin('polyline', numOfTests, function(test) {
     test.assertExists('.test-polyline', 'polyline exists');
 
     test.assertEquals(
-        this.getElementsAttribute('.test-polyline', 'points'), ['20,100 40,60 80,90 100,20 '],
-        'should have all the correct points'
+      this.getElementsAttribute('.test-polyline', 'points'), ['20,100 40,60 80,90 100,20 '],
+      'should have all the correct points'
     );
   });
 

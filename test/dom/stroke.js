@@ -5,13 +5,13 @@ casper.test.begin('stroke', numOfTests, function(test) {
 
   casper.thenOpen('http://localhost:8000/', function() {
     test.assertEquals(
-        this.getElementsAttribute('.test-rect', 'stroke'), ['#3B4D7D'],
-        'should have the correct stroke color'
+      this.getElementsAttribute('.test-rect', 'stroke'), ['#3B4D7D'],
+      'should have the correct stroke color'
     );
 
     test.assertEquals(
-        this.getElementsAttribute('.test-rect', 'stroke-width'), ['4'],
-        'should have the correct stroke width'
+      this.getElementsAttribute('.test-rect', 'stroke-width'), ['4'],
+      'should have the correct stroke width'
     );
   });
 
