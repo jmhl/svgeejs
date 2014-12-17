@@ -13,8 +13,8 @@
   function createSvg(width, height) {
     var svg = document.createElementNS(w3SvgUrl, 'svg');
 
-    svg.setAttribute('width', width);
-    svg.setAttribute('height', height);
+    svg.setAttributeNS(null, 'width', width);
+    svg.setAttributeNS(null, 'height', height);
 
     // svg still needs to be appended
     return svg;
@@ -313,6 +313,7 @@
    * @param {element} element The SVG element whose stroke you wish to be altered.
    * @param {number} strokeWidth The width of the stroke.
    * @param {string} color The color of the stroke.
+   * @param {object} options (optional) An optional options hash that can include the following params:
    * @param {string} strokeLinecap (optional) Caps the ends of the stroke, can be: 'butt', 'round', or 'square'.
    * @param {string} strokeLinejoin (optional) Defines how the join between two lines is rendered, can be: 'bevel', 'miter', or 'round'.
    * @param {number} strokeMiterlimit (optional) When strokeLinejoin === 'miter', this variable limits how far between the point the two lines meet.
@@ -323,27 +324,35 @@
    * @returns {element} Returns the SVG element.
    */
   // TODO: use an options hash
-  function stroke(element, strokeWidth, color, strokeLinecap, strokeLinejoin, strokeMiterlimit, strokeDasharray, strokeDashoffset, strokeOpacity) {
+  function stroke(element, strokeWidth, color, options) {
     // element, strokeWidth, and color are required, others are optional
-    var optionalAttrs = {
-      'stroke-linecap': strokeLinecap,
-      'stroke-linejoin': strokeLinejoin,
-      'stroke-miterlimit': strokeMiterlimit,
-      'stroke-dasharray': strokeDasharray,
-      'stroke-dashoffset': strokeDashoffset,
-      'stroke-opacity': strokeOpacity
-    };
+    var optionalAttrs;
 
-    element.setAttribute('stroke-width', strokeWidth);
-    element.setAttribute('stroke', color);
+    if (options) {
+      optionalAttrs = {
+        'stroke-linecap': options.strokeLinecap,
+        'stroke-linejoin': options.strokeLinejoin,
+        'stroke-miterlimit': options.strokeMiterlimit,
+        'stroke-dasharray': options.strokeDasharray,
+        'stroke-dashoffset': options.strokeDashoffset,
+        'stroke-opacity': options.strokeOpacity
+      };
+    }
 
-    var keys = Object.keys(optionalAttrs);
+    element.setAttributeNS(null, 'stroke-width', strokeWidth);
+    element.setAttributeNS(null, 'stroke', color);
 
-    keys.forEach(function(attr) {
-      if (optionalAttrs[attr]) {
-        element.setAttribute(attr);
-      }
-    });
+    if (optionalAttrs) {
+      var attrs = Object.keys(optionalAttrs);
+
+      attrs.forEach(function(attr) {
+        var attrValue = optionalAttrs[attr];
+
+        if (attrValue) {
+          element.setAttributeNS(null, attr, attrValue);
+        }
+      });
+    }
 
     return element;
   };
