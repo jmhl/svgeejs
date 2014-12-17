@@ -76,7 +76,7 @@
    * Creates an SVG rectangle element.
    *
    * @param {number} x The x-coordinate of the top left corner of the rectangle.
-   * @param {number} y The y-coordiante of the top left corner of the rectangle.
+   * @param {number} y The y-coordinate of the top left corner of the rectangle.
    * @param {number} width The width of the rectangle.
    * @param {number} height The height of the rectangle.
    *
@@ -97,7 +97,7 @@
    * Creates an SVG square element.
    *
    * @param {number} x The x-coordinate of the top left corner of the square.
-   * @param {number} y The y-coordiante of the top left corner of the square.
+   * @param {number} y The y-coordinate of the top left corner of the square.
    * @param {number} sideLength The length of the sides of the square.
    *
    * @returns {element} The SVG rectangle element to be appended to the SVG canvas.
@@ -111,7 +111,7 @@
    * Creates an SVG line element.
    *
    * @param {number} x1 The x-coordinate of the first point.
-   * @param {number} y1 The y-coordiante of the first point.
+   * @param {number} y1 The y-coordinate of the first point.
    * @param {number} x2 The x-coordinate of the second point.
    * @param {number} y2 The y-coordinate of the second point.
    *
@@ -186,7 +186,7 @@
    * Creates an SVG text elment.
    *
    * @param {number} x The x-coordinate of the top left corner of the text.
-   * @param {number} y The y-coordiante of the top left corner of the text.
+   * @param {number} y The y-coordinate of the top left corner of the text.
    * @param {string} msg The text that you wish to display.
    *
    * @returns {element} The SVG text element to append to the SVG canvas.
