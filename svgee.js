@@ -24,8 +24,6 @@
    * Closes the SVG canvas
    *
    * @param {element} element The SVG element that you want to close.
-   *
-   * @returns Null.
    */
   function closeSvg(element) {
     element.setAttribute('xmlns', w3SvgUrl);
@@ -168,7 +166,7 @@
 
   // helper method for polyline and polygon
   function createCoordinatePairString(coordinatePairs) {
-    var coordinatePairsString = "";
+    var coordinatePairsString = '';
 
     coordinatePairs.forEach(function(coordinate, index) {
       coordinatePairsString += coordinate;
@@ -191,13 +189,13 @@
    *
    * @returns {element} The SVG text element to append to the SVG canvas.
    */
-  function text(x, y, fontSize, msg) {
+  function text(x, y, fontSize, content) {
     var text = document.createElementNS(w3SvgUrl, 'text');
 
     text.setAttributeNS(null, 'x', x);
     text.setAttributeNS(null, 'y', y);
     text.setAttributeNS(null, 'font-size', fontSize);
-    text.textContent = msg;
+    text.textContent = content;
 
     return text;
   }
@@ -304,7 +302,7 @@
    * @returns Null.
    */
   function fill(element, color) {
-    element.setAttribute('fill', color);
+    element.setAttributeNS(null, 'fill', color);
   };
 
   /**
@@ -323,7 +321,6 @@
    *
    * @returns {element} Returns the SVG element.
    */
-  // TODO: use an options hash
   function stroke(element, strokeWidth, color, options) {
     // element, strokeWidth, and color are required, others are optional
     var optionalAttrs;
@@ -388,7 +385,7 @@
     var group = document.createElementNS(w3SvgUrl, 'g');
 
     if (identifier) {
-      group.setAttribute('id', identifier);
+      group.setAttributeNS(null, 'id', identifier);
     }
 
     elements.forEach(function(element) {
