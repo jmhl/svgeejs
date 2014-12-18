@@ -319,11 +319,33 @@
   /**
    * Removes a class from an element.
    *
-   * @param {element} element The SVG element to from the class from.
+   * @param {element} element The SVG element to remove the class from.
    * @param {string} className The name of the class to remove from the SVG element.
    */
   function removeClass(element, className) {
     element.classList.remove(className);
+  }
+
+  /**
+   * Toggles a class on an element - removes the class if the element currently contains it, and adds it otherwise.
+   *
+   * @param {element} element The SVG element whose class we want to toggle.
+   * @param {string} className The name of the class to toggle on the SVG element.
+   */
+  function toggleClass(element, className) {
+    element.classList.toggle(className);
+  }
+
+  /**
+   * Checks if an element has the specified class.
+   *
+   * @param {element} element The SVG element to check for the class.
+   * @param {string} className The class to check if the SVG element has.
+   *
+   * @returns {boolean} Returns true if the element has the class, false otherwise.
+   */
+  function hasClass(element, className) {
+    return element.classList.contains(className);
   }
 
   /**
@@ -436,7 +458,8 @@
     stroke: stroke,
     square: square,
     text: text,
-    tile: tile
+    tile: tile,
+    toggleClass: toggleClass
   };
 
   // actually expose the API
