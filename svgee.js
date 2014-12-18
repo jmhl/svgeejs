@@ -305,6 +305,27 @@
     element.setAttributeNS(null, 'fill', color);
   };
 
+
+  /**
+   * Adds a class to an element.
+   *
+   * @param {element} element The SVG element to add the class to.
+   * @param {string} className The name of the class to add to the SVG element.
+   */
+  function addClass(element, className) {
+    element.classList.add(className);
+  }
+
+  /**
+   * Removes a class from an element.
+   *
+   * @param {element} element The SVG element to from the class from.
+   * @param {string} className The name of the class to remove from the SVG element.
+   */
+  function removeClass(element, className) {
+    element.classList.remove(className);
+  }
+
   /**
    * Alters the stroke of the SVG element.
    *
@@ -397,6 +418,7 @@
 
   // API to expose
   var SVGEE = {
+    addClass: addClass,
     animate: animate,
     circle: circle,
     closeSvg: closeSvg,
@@ -410,6 +432,7 @@
     polygon: polygon,
     polyline: polyline,
     rect: rect,
+    removeClass: removeClass,
     stroke: stroke,
     square: square,
     text: text,

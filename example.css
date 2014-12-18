@@ -1,0 +1,20 @@
+#tile {
+  position: relative;
+  width: 800px;
+  height: 500px;
+}
+
+.test-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 180px;
+  padding: 15px 20px;
+  border-radius: 4px;
+  border: 0;
+  background-color: #54B52E;
+  font-family: 'Helvetica Neue';
+  font-size: 18px;
+  color: white;
+}
