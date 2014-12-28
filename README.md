@@ -1,6 +1,10 @@
 # SVGEE.js
 Playing around with SVG.
 
+### TODO
++ Tile
++ Tessellate
+
 ### Resources
 + [http://snapsvg.io/docs]()
 + [https://developer.mozilla.org/en-US/docs/Web/SVG]()

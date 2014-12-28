@@ -300,10 +300,15 @@
     var multiplier = Math.min.apply(null, pattern);
     var colors = ['red', 'green', 'blue', 'purple'];
     var elements = [];
+    var x = 100;
+    var y = 100;
 
     pattern.forEach(function(side, i) {
       var lenSide = side / multiplier * baseLength * 10;
-      var element = nGon(side, [100, 100], lenSide);
+      var radius = calculateRadius(side, lenSide);
+      x += radius;
+      y += radius;
+      var element = nGon(side, [x, y], lenSide);
       var color = colors[i];
       fill(element, color);
       stroke(element, 1, color);
