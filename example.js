@@ -46,7 +46,7 @@ var text = SVGEE.text(200, 400, 24, 'hello!');
 svg.appendChild(text);
 SVGEE.addClass(text, 'test-text');
 
-var nGon = SVGEE.nGon(8, [300, 200], 120);
+var nGon = SVGEE.nGon(8, [300, 200], 140);
 svg.appendChild(nGon);
 SVGEE.stroke(nGon, 2, '#862EB3');
 SVGEE.fill(nGon, 'transparent');
@@ -68,3 +68,15 @@ tileCanvas.appendChild(tile);
 SVGEE.fill(tile, 'transparent');
 SVGEE.stroke(tile, 1, '#54B52E');
 SVGEE.animate(tile, 'opacity', 0, 1, '900ms', 1);
+
+
+// test tesselate
+var tessellateDiv = document.getElementById('tesselate');
+var tessellateCanvas = SVGEE.createSvg(800, 500);
+tessellateDiv.appendChild(tessellateCanvas);
+SVGEE.closeSvg(tessellateCanvas);
+
+var pattern = [3, 4, 6, 4];
+
+var tessellate = SVGEE.tessellate(tessellateCanvas, pattern, 4);
+tessellateCanvas.appendChild(tessellate);

@@ -294,6 +294,28 @@
   }
 
   /**
+   * Archimedean (semi-regular) tessellation.
+   */
+  function tessellate(canvas, pattern, baseLength) {
+    var multiplier = Math.min.apply(null, pattern);
+    var colors = ['red', 'green', 'blue', 'purple'];
+    var elements = [];
+
+    pattern.forEach(function(side, i) {
+      var lenSide = side / multiplier * baseLength * 10;
+      var element = nGon(side, [100, 100], lenSide);
+      var color = colors[i];
+      fill(element, color);
+      stroke(element, 1, color);
+      elements.push(element);
+    });
+
+    var tessellateGroup = group(elements);
+
+    return tessellateGroup;
+  }
+
+  /**
    * Fills the SVG element with a certain color.
    *
    * @param {element} element The SVG element to be filled.
@@ -457,6 +479,7 @@
     removeClass: removeClass,
     stroke: stroke,
     square: square,
+    tessellate: tessellate,
     text: text,
     tile: tile,
     toggleClass: toggleClass
