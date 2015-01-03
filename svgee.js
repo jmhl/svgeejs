@@ -296,18 +296,39 @@
   /**
    * Archimedean (semi-regular) tessellation.
    */
+
+  // regular tessellations:
+  // ['3.3.3.3.3.3', '4.4.4.4', '6.6.6.']
+  // semi-regular tessellations:
+  // ['3.3.3.4.4', '3.3.4.3.3', '3.4.6.4', '3.6.3.6', '4.8.8', '4.6.12', '3.3.3.3.6', '3.12.12']
+  // form all shapes around the center point by building out nGons after calculating all the individual element's center points
+  // group the elements and then tile the group over the canvas
+  // http://mathforum.org/sum95/suzanne/whattess.html
   function tessellate(canvas, pattern, baseLength) {
-    var multiplier = Math.min.apply(null, pattern);
+    if (!isValidPattern(pattern)) {
+      console.log('invalid pattern for tessellation');
+      return;
+    }
+
+    var patternShapes = pattern.split('.');
+    var multiplier = Math.min.apply(null, patternShapes);
     var colors = ['red', 'green', 'blue', 'purple'];
     var elements = [];
+    // hard-coded for now
     var x = 100;
     var y = 100;
 
-    pattern.forEach(function(side, i) {
-      var lenSide = side / multiplier * baseLength * 10;
-      var radius = calculateRadius(side, lenSide);
-      x += radius;
-      y += radius;
+    var centerPoints = [];
+    var len = pattern.length;
+
+    patternShapes.forEach(function(numSides, i) {
+      var lenSide = numSides / multiplier * baseLength * 10;
+      var radius = calculateRadius(numSides, lenSide);
+
+      var centerPoints = calculateCenter(numSides, lenSide, i);
+      var x = centerPoints.x;
+      var y = centerPoints.y;
+
       var element = nGon(side, [x, y], lenSide);
       var color = colors[i];
       fill(element, color);
@@ -318,6 +339,38 @@
     var tessellateGroup = group(elements);
 
     return tessellateGroup;
+  }
+
+  function isValidPattern(pattern) {
+    var validPatterns = [
+      // regular tessellations
+      '3.3.3.3.3.3',
+      '4.4.4.4',
+      '6.6.6.',
+      // semi-regular tessellations
+      '3.3.3.4.4',
+      '3.3.4.3.3',
+      '3.4.6.4',
+      '3.6.3.6',
+      '4.8.8',
+      '4.6.12',
+      '3.3.3.3.6',
+      '3.12.12'
+    ];
+    var valid = false;
+
+    validPatterns.forEach(function(validPattern) {
+      console.log(validPattern, pattern);
+      if (pattern === validPattern) {
+        console.log('here');
+        valid = true;
+      }
+    });
+
+    return valid;
+  }
+
+  function calculateCenter(numSides, lenSide, patternPosition) {
   }
 
   /**
