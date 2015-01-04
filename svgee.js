@@ -304,6 +304,7 @@
   // form all shapes around the center point by building out nGons after calculating all the individual element's center points
   // group the elements and then tile the group over the canvas
   // http://mathforum.org/sum95/suzanne/whattess.html
+  // will need a 'rules' object to make this easier...
   function tessellate(canvas, pattern, baseLength) {
     if (!isValidPattern(pattern)) {
       console.log('invalid pattern for tessellation');
@@ -318,7 +319,7 @@
       var lenSide = numSides * baseLength;
       var radius = calculateRadius(numSides, lenSide);
       var angle = calculateAngle(pattern, i);
-      var centerPoints = calculateCenter(numSides, lenSide, angle);
+      var centerPoints = calculateCenter(numSides, lenSide, angle, i);
       var x = centerPoints.x;
       var y = centerPoints.y;
 
@@ -327,11 +328,20 @@
       var color = colors[i];
       fill(element, color);
       elements.push(element);
+      rotateElement(element, idx);
     });
 
     var tessellateGroup = group(elements);
 
     return tessellateGroup;
+  }
+
+  function rotateElement(element, idx) {
+    if (idx == 0) {
+      // rotate
+    } else if (idx == 2) {
+      // rotate
+    }
   }
 
   function createTessellationElement(numSides, centerPoints, lenSide) {
@@ -357,10 +367,19 @@
     };
   }
 
-  function calculateCenter(numSides, lenSide, angle) {
+  function calculateCenter(numSides, lenSide, angle, idx) {
     var radius = calculateRadius(numSides, lenSide);
     var x = calculateX(300, radius, angle);
-    var y = 300;
+    var y;
+
+    // == used for type coercion
+    if (numSides != 3) {
+      y = 300;
+    } else if (idx === 0) {
+      y = 300 + lenSide;
+    } else if (idx === 2) {
+      y = 300 - lenSide;
+    }
 
     return {
       'x': x,
