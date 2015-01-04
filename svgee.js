@@ -311,24 +311,18 @@
     }
 
     var patternShapes = pattern.split('.');
-    var colors = ['red', 'green', 'blue', 'purple'];
+    var colors = ['teal', 'pink', 'teal', 'pink'];
     var elements = [];
-    // hard-coded for now
-    var x = 100;
-    var y = 100;
-
-    var centerPoints = [];
-    var len = pattern.length;
 
     patternShapes.forEach(function(numSides, i) {
       var lenSide = numSides * baseLength;
       var radius = calculateRadius(numSides, lenSide);
-
       var angle = calculateAngle(pattern, i);
       var centerPoints = calculateCenter(numSides, lenSide, angle);
       var x = centerPoints.x;
       var y = centerPoints.y;
 
+      var element = createTessellationElement(numSides, [x, y], lenSide);
       var element = nGon(numSides, [x, y], lenSide);
       var color = colors[i];
       fill(element, color);
@@ -338,6 +332,40 @@
     var tessellateGroup = group(elements);
 
     return tessellateGroup;
+  }
+
+  function createTessellationElement(numSides, centerPoints, lenSide) {
+    var x = centerPoints[0];
+    var y = centerPoints[1];
+
+    if (numSides === 4) {
+      // return square(x, y, lenSide);
+    } else {
+      return nGon(numSides, [x, y], lenSide);
+    }
+  }
+
+  function calculateAngle(pattern, id) {
+    switch(pattern) {
+      case '3.6.3.6':
+        switch(id) {
+          case 0: return 90;
+          case 1: return 180;
+          case 2: return 90;
+          case 3: return 0;
+        };
+    };
+  }
+
+  function calculateCenter(numSides, lenSide, angle) {
+    var radius = calculateRadius(numSides, lenSide);
+    var x = calculateX(300, radius, angle);
+    var y = 300;
+
+    return {
+      'x': x,
+      'y': y
+    };
   }
 
   function isValidPattern(pattern) {
@@ -365,29 +393,6 @@
     });
 
     return valid;
-  }
-
-  function calculateAngle(pattern, id) {
-    switch(pattern) {
-      case '3.6.3.6':
-        switch(id) {
-          case 0: return 90;
-          case 1: return 180;
-          case 2: return 90;
-          case 3: return 0;
-        };
-    };
-  }
-
-  function calculateCenter(numSides, lenSide, angle) {
-    var radius = calculateRadius(numSides, lenSide);
-    var x = calculateX(300, radius, angle);
-    var y = 300;
-
-    return {
-      'x': x,
-      'y': y
-    };
   }
 
   /**
