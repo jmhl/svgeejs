@@ -77,5 +77,5 @@ tessellateDiv.appendChild(tessellateCanvas);
 SVGEE.closeSvg(tessellateCanvas);
 
 var pattern = '3.6.3.6';
-var tessellate = SVGEE.tessellate(tessellateCanvas, pattern, 10);
+var tessellate = SVGEE.tessellate(tessellateCanvas, pattern, 20);
 tessellateCanvas.appendChild(tessellate);

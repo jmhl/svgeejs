@@ -311,7 +311,6 @@
     }
 
     var patternShapes = pattern.split('.');
-    var multiplier = Math.min.apply(null, patternShapes);
     var colors = ['red', 'green', 'blue', 'purple'];
     var elements = [];
     // hard-coded for now
@@ -322,7 +321,7 @@
     var len = pattern.length;
 
     patternShapes.forEach(function(numSides, i) {
-      var lenSide = numSides / multiplier * baseLength * 10;
+      var lenSide = numSides * baseLength;
       var radius = calculateRadius(numSides, lenSide);
 
       var angle = calculateAngle(pattern, i);
@@ -333,7 +332,6 @@
       var element = nGon(numSides, [x, y], lenSide);
       var color = colors[i];
       fill(element, color);
-      stroke(element, 1, color);
       elements.push(element);
     });
 
@@ -373,18 +371,18 @@
     switch(pattern) {
       case '3.6.3.6':
         switch(id) {
-          case 0: return 0;
+          case 0: return 90;
           case 1: return 180;
           case 2: return 90;
-          case 3: return 270;
+          case 3: return 0;
         };
     };
   }
 
   function calculateCenter(numSides, lenSide, angle) {
     var radius = calculateRadius(numSides, lenSide);
-    var x = calculateX(0, radius, angle);
-    var y = calculateY(0, radius, angle);
+    var x = calculateX(300, radius, angle);
+    var y = 300;
 
     return {
       'x': x,
