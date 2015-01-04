@@ -325,11 +325,12 @@
       var lenSide = numSides / multiplier * baseLength * 10;
       var radius = calculateRadius(numSides, lenSide);
 
-      var centerPoints = calculateCenter(numSides, lenSide, i);
+      var angle = calculateAngle(pattern, i);
+      var centerPoints = calculateCenter(numSides, lenSide, angle);
       var x = centerPoints.x;
       var y = centerPoints.y;
 
-      var element = nGon(side, [x, y], lenSide);
+      var element = nGon(numSides, [x, y], lenSide);
       var color = colors[i];
       fill(element, color);
       stroke(element, 1, color);
@@ -360,9 +361,7 @@
     var valid = false;
 
     validPatterns.forEach(function(validPattern) {
-      console.log(validPattern, pattern);
       if (pattern === validPattern) {
-        console.log('here');
         valid = true;
       }
     });
@@ -370,7 +369,27 @@
     return valid;
   }
 
-  function calculateCenter(numSides, lenSide, patternPosition) {
+  function calculateAngle(pattern, id) {
+    switch(pattern) {
+      case '3.6.3.6':
+        switch(id) {
+          case 0: return 0;
+          case 1: return 180;
+          case 2: return 90;
+          case 3: return 270;
+        };
+    };
+  }
+
+  function calculateCenter(numSides, lenSide, angle) {
+    var radius = calculateRadius(numSides, lenSide);
+    var x = calculateX(0, radius, angle);
+    var y = calculateY(0, radius, angle);
+
+    return {
+      'x': x,
+      'y': y
+    };
   }
 
   /**
