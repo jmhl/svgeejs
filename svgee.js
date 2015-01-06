@@ -328,7 +328,7 @@
       var color = colors[i];
       fill(element, color);
       elements.push(element);
-      rotateElement(element, idx);
+      rotateElement(element, i);
     });
 
     var tessellateGroup = group(elements);
@@ -336,11 +336,35 @@
     return tessellateGroup;
   }
 
+  // store the center point for each side of each element and then use that as the center
+  // of the next elements to add
   function rotateElement(element, idx) {
     if (idx == 0) {
-      // rotate
+      var avg = averageOfPoints(element);
+      element.setAttributeNS(null, 'transform', 'rotate(30 ' + avg.x + ' ' +  avg.y + ')');
     } else if (idx == 2) {
-      // rotate
+      var avg = averageOfPoints(element);
+      element.setAttributeNS(null, 'transform', 'rotate(-30 ' + avg.x + ' ' +  avg.y + ')');
+    }
+  }
+
+  function averageOfPoints(element) {
+    var pointPairs = element.getAttribute('points').split(' ');
+    var count = pointPairs.length - 1;
+    var xs = 0;
+    var ys = 0;
+
+    pointPairs.forEach(function(pair) {
+      if (pair !== '') {
+        var split = pair.split(',');
+        xs += +split[0];
+        ys += +split[1];
+      }
+    });
+
+    return {
+      x: xs / count + 38,
+      y: ys / count - 16 
     }
   }
 
