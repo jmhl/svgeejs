@@ -11,5 +11,11 @@
   "devDependencies": {
     "chai": "^1.10.0",
     "jshint": "^2.5.10"
+  },
+  "dependencies": {
+    "gulp": "^3.8.10",
+    "gulp-concat": "^2.4.3",
+    "gulp-webpack": "^1.1.2",
+    "webpack": "^1.5.1"
   }
 }
